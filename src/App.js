@@ -1,12 +1,11 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * 
  *
- * @format
- * @flow
+ * 
+ * 
  */
-import 'react-native-gesture-handler';
 import React from 'react';
+import 'react-native-gesture-handler';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,7 +23,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+const HomeScreen = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -111,4 +113,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+const App = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+});
+
+export default createAppContainer(App);
