@@ -1,10 +1,31 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationActions, StackActions } from 'react-navigation';
+import AsyncStorage from '@react-native-community/async-storage';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import LoginScreen from '../screens/Login/LoginScreen';
 
-const Navigator = createStackNavigator(
+const Navigator = createBottomTabNavigator(
         {
-            Home: LoginScreen
+            Home: {
+                screen: LoginScreen
+            },
+            Today: {
+                screen: LoginScreen,
+            },
+            Logout: {
+                screen: LoginScreen,
+                navigationOptions: {
+                    tabBarOnPress: async (props) => {
+                        await AsyncStorage.removeItem('username')
+                        props.navigation.dispatch(StackActions.reset({
+                            index: 0,
+                            actions: [
+                                NavigationActions.navigate({ routeName: 'AuthLoading'}),
+                            ]
+                        }));
+                    }
+                }
+            }
         },
         {
             initialRouteName: 'Home',
