@@ -1,13 +1,12 @@
-import React from 'react';
-import 'react-native-gesture-handler';
-import { createAppContainer } from 'react-navigation';
+import React, {useEffect} from 'react';
+import {AsyncStorage} from 'react-native';
 
-import AppNavigator from './navigation/AppNavigator';
+import Navigator from './navigations/Navigator';
 
-const AppContainer = createAppContainer(AppNavigator());
 const App = () => {
-  return (
-    <AppContainer/>
-  )
+
+	return (
+		<Navigator/>
+	)
 }
 export default App;
