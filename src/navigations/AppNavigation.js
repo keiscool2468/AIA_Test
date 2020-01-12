@@ -3,14 +3,16 @@ import { NavigationActions, StackActions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import LoginScreen from '../screens/Login/LoginScreen';
+import EditWaterScreen from '../screens/EditWater/EditWaterScreen';
+import WaterProvider from '../contexts/WaterContext';
 
 const Navigator = createBottomTabNavigator(
         {
-            Home: {
+            Week: {
                 screen: LoginScreen
             },
             Today: {
-                screen: LoginScreen,
+                screen: EditWaterScreen,
             },
             Logout: {
                 screen: LoginScreen,
@@ -28,14 +30,16 @@ const Navigator = createBottomTabNavigator(
             }
         },
         {
-            initialRouteName: 'Home',
+            initialRouteName: 'Today',
             headerMode: 'none'
         }
     )
 
 const AppNavigator = (props) => {
     return (
-        <Navigator navigation={props.navigation} />
+       <WaterProvider>
+           <Navigator navigation={props.navigation} />
+       </WaterProvider>
     )
 }
 AppNavigator.router = Navigator.router

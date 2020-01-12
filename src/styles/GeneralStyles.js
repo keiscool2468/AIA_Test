@@ -17,9 +17,12 @@ export const GeneralStyles = StyleSheet.create({
         shadowOpacity: 1.0,
         borderRadius: 4,
         backgroundColor: `#fff`,
+        padding: 10,
+        marginTop: 20
     },
     textInput: { 
         borderColor: 'gray', 
-        borderBottomWidth: 1 
+        borderBottomWidth: 1,
+        marginTop: 10
     }
 });
