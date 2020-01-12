@@ -21,3 +21,8 @@ export const getHKnewDate = () => {
     var hkTime = new Date(hkTimeString);
     return (hkTime)
 }
+
+export const getYYYYMMDD = (datetimeString, separator = '-') => {
+    const YYYYMMDD = `${moment(datetimeString).format("YYYY")}${separator}${moment(datetimeString).format("MM")}${separator}${moment(datetimeString).format("DD")}`
+    return YYYYMMDD;
+}
