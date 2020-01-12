@@ -10,10 +10,13 @@ import {
 import {LoginStyles} from './LoginStyles';
 import {Login} from '../../agents/Auth'
 import {GeneralStyles} from '../../styles/GeneralStyles';
+
+
 const LoginScreen = (props) => {
     const [loginForm, setLoginForm] = useState({username: '', password: ''});
 
     const onClickLogin = () => {
+        //Show aleat if there is no username
         if(!loginForm.username) {
             Alert.alert(
                 'Missing Username',
@@ -24,6 +27,7 @@ const LoginScreen = (props) => {
             );
             return;
         }
+        //Show aleat if there is no password
         if(!loginForm.password) {
             Alert.alert(
                 'Missing Password',
@@ -35,6 +39,7 @@ const LoginScreen = (props) => {
             return;
         }
         Login(loginForm, (result, errMsg) => {
+            //Show aleat if there is any error
             if(errMsg) {
                 Alert.alert(
                     errMsg,
@@ -44,6 +49,7 @@ const LoginScreen = (props) => {
                     ]
                 );
             }
+            //navigate to app navigation stack
             if(result) {
                 props.navigation.dispatch(StackActions.reset({
                     index: 0,
