@@ -2,20 +2,20 @@ import React from 'react';
 import { NavigationActions, StackActions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import LoginScreen from '../screens/Login/LoginScreen';
+import WeekReportScreen from '../screens/WeekReport/WeekReportScreen';
 import EditWaterScreen from '../screens/EditWater/EditWaterScreen';
 import WaterProvider from '../contexts/WaterContext';
 
 const Navigator = createBottomTabNavigator(
         {
             Week: {
-                screen: LoginScreen
+                screen: WeekReportScreen
             },
             Today: {
                 screen: EditWaterScreen,
             },
             Logout: {
-                screen: LoginScreen,
+                screen: WeekReportScreen,
                 navigationOptions: {
                     tabBarOnPress: async (props) => {
                         await AsyncStorage.removeItem('username')
@@ -30,7 +30,7 @@ const Navigator = createBottomTabNavigator(
             }
         },
         {
-            initialRouteName: 'Today',
+            initialRouteName: 'Week',
             headerMode: 'none'
         }
     )
