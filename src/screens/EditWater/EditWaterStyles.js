@@ -9,7 +9,6 @@ export const EditWaterStyles = StyleSheet.create({
     cardView: {
         flex: 1,
         marginHorizontal: 10,
-        padding: 10,
         alignItems: 'center'
     }
 });
