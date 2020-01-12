@@ -68,7 +68,7 @@ const LoginScreen = (props) => {
                     </Text>
                     <TextInput
                         autoCapitalize='none'
-                        style={[GeneralStyles.textInput, {marginTop: 15}]}
+                        style={[GeneralStyles.textInput]}
                         onChangeText={(text) => setLoginForm({...loginForm, username: text})}
                     />
                 </View>
@@ -79,7 +79,7 @@ const LoginScreen = (props) => {
                     </Text>
                     <TextInput
                         secureTextEntry={true}
-                        style={[GeneralStyles.textInput, {marginTop: 15}]}
+                        style={[GeneralStyles.textInput]}
                         onChangeText={(text) => setLoginForm({...loginForm, password: text})}
                     />
                 </View>
