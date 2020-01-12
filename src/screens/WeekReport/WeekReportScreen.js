@@ -12,6 +12,7 @@ const TARGET_VOLUMN = 2000;
 const WeekReportScreen = (props) => {
     const {volumnOfWeek, setVolumnOfWeek} = useContext(WaterContext)
 
+    //function to convert data from object structure to array structure
     handleLabelForDisplay = () => {
         let newData = [];
         newData = lodash.map(volumnOfWeek, (data, date) => {

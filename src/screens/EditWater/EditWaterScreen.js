@@ -27,6 +27,7 @@ const EditWaterScreen = (props) => {
         return volumnOfWeek[targetDate];
     }
 
+    //add water event handler
     onClickAdd = () => {
         if(!addVolumn) {
             Alert.alert(
@@ -46,6 +47,7 @@ const EditWaterScreen = (props) => {
         setAddVolumn(null)
     }
 
+    //modify water event handler
     onClickModify = () => {
         if(!modifyVolumn) {
             Alert.alert(
@@ -63,11 +65,13 @@ const EditWaterScreen = (props) => {
         setModifyVolumn(null)
     }
 
+    //remove water event handler
     onClickRemove = () => {
         volumnOfWeek[targetDate] = 0;
         setVolumnOfWeek(volumnOfWeek);
     }
 
+    //function to convert data from object structure to array structure
     handleLabelForDisplay = () => {
         let newData = [];
         newData = lodash.map(volumnOfWeek, (data, date) => {

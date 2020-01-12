@@ -18,5 +18,8 @@ As a project Manager I want to have an app in react native to check if the user 
 - User can navigate between screens
 - User can logout
 
+Testing Account:
+ - Username: jack
+ - Password: 123123123
 
 Upload the finished code to bitbucket or github and share it with angel.celio@aia.com
