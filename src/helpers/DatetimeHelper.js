@@ -2,6 +2,7 @@ const moment = require('moment');
 
 const LENGTH_OF_WEEK = 7;
 
+//Helper function to getting passedWeek in array
 export const getPassedWeek = () => {
     let week = [];
     let date = getHKnewDate();
@@ -20,12 +21,15 @@ export const getPassedWeek = () => {
     return week;
 }
 
+
+//Helper function to getting current datetime string in hong kong time zone
 export const getHKnewDate = () => {
     var hkTimeString = new Date().toLocaleString("en-US", {timeZone: "Asia/Hong_Kong"});
     var hkTime = new Date(hkTimeString);
     return (hkTime)
 }
 
+//Helper function to getting date string in YYYYMMDD format
 export const getYYYYMMDD = (datetimeString, separator = '-') => {
     const YYYYMMDD = `${moment(datetimeString).format("YYYY")}${separator}${moment(datetimeString).format("MM")}${separator}${moment(datetimeString).format("DD")}`
     return YYYYMMDD;
