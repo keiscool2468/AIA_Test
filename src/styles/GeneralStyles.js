@@ -20,6 +20,7 @@ export const GeneralStyles = StyleSheet.create({
     },
     textInput: { 
         borderColor: 'gray', 
-        borderBottomWidth: 1 
+        borderBottomWidth: 1,
+        marginTop: 10
     }
 });
