@@ -25,7 +25,7 @@ const WaterProvider = props => {
 
     setVolumns = (newVolumns) => {
         getUsername().then(async (username) => {
-            await AsyncStorage.getItem(`${username}-volumns`, JSON.stringify(newVolumns))
+            await AsyncStorage.setItem(`${username}-volumns`, JSON.stringify(newVolumns))
         })
     }
 
@@ -40,9 +40,10 @@ const WaterProvider = props => {
 
     updateVolumnOfWeek = (currentVolumnOfWeek) => {
         const newVolumnOfWeek = createVolumeOfWeek();
-        lodash.forEach(newVolumnOfWeek, (date, volumn) => {
+        lodash.forEach(newVolumnOfWeek, (volumn, date) => {
             newVolumnOfWeek[date] = currentVolumnOfWeek[date] || volumn;
         })
+        return newVolumnOfWeek
     }
 
     useEffect(() => {
@@ -57,13 +58,14 @@ const WaterProvider = props => {
         });
     }, [])
 
+
     return (
         <WaterContext.Provider
             value={{
                 volumnOfWeek: volumnOfWeek,
                 setVolumnOfWeek: ((newVolumnOfWeek) => {
-                    setVolumns(newVolumnOfWeek)
-                    setVolumnOfWeek(newVolumnOfWeek)
+                    setVolumns({...newVolumnOfWeek});
+                    setVolumnOfWeek({...newVolumnOfWeek});
                 })
             }}
         >

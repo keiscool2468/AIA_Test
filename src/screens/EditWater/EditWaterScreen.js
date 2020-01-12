@@ -15,16 +15,14 @@ const TARGET_VOLUMN = 2000;
 const EditWaterScreen = (props) => {
     const {volumnOfWeek, setVolumnOfWeek} = useContext(WaterContext)
     const [volumnOfDay, setVolumnOfDay] = useState(0);
-    const [addVolumn, setAddVolumn] = useState(0);
-    const [modifyVolumn, setModifyVolumn] = useState(0);
+    const [addVolumn, setAddVolumn] = useState(null);
+    const [modifyVolumn, setModifyVolumn] = useState(null);
+
+    const targetDate = props.targetDate || getYYYYMMDD(getHKnewDate());
+    const isCurrentDate = (!props.targetDate);
 
     getVolumnOfDay = () => {
-        if(props.targetDate) {
-            return volumnOfWeek[volumnOfDay];
-        } else {
-            let todayDateString = getYYYYMMDD(getHKnewDate());
-            return volumnOfWeek[todayDateString];
-        }
+        return volumnOfWeek[targetDate];
     }
 
     onClickAdd = () => {
@@ -40,7 +38,10 @@ const EditWaterScreen = (props) => {
         }
 
         const sumOfVolumn = parseInt(addVolumn)+parseInt(volumnOfDay)
-        setVolumnOfDay(sumOfVolumn)
+
+        volumnOfWeek[targetDate] = sumOfVolumn;
+        setVolumnOfWeek(volumnOfWeek);
+        setAddVolumn(null)
     }
 
     onClickModify = () => {
@@ -55,7 +56,14 @@ const EditWaterScreen = (props) => {
             return;
         }
 
-        setVolumnOfDay(parseInt(modifyVolumn))
+        volumnOfWeek[targetDate] = parseInt(modifyVolumn);
+        setVolumnOfWeek(volumnOfWeek);
+        setModifyVolumn(null)
+    }
+
+    onClickRemove = () => {
+        volumnOfWeek[targetDate] = 0;
+        setVolumnOfWeek(volumnOfWeek);
     }
 
     useEffect(() => {
@@ -77,6 +85,7 @@ const EditWaterScreen = (props) => {
                         Add Here
                     </Text>
                     <TextInput
+                        value={addVolumn && addVolumn.toString()}
                         keyboardType={'numeric'}
                         style={[GeneralStyles.textInput, {paddingHorizontal: 10}]}
                         onChangeText={(amount) => setAddVolumn(amount)}
@@ -92,6 +101,7 @@ const EditWaterScreen = (props) => {
                         Modify Here
                     </Text>
                     <TextInput
+                        value={modifyVolumn && modifyVolumn.toString()}
                         keyboardType={'numeric'}
                         style={[GeneralStyles.textInput, {paddingHorizontal: 10}]}
                         onChangeText={(amount) => setModifyVolumn(amount)}
@@ -102,6 +112,16 @@ const EditWaterScreen = (props) => {
                     />
                 </View>
             </View>
+
+            {isCurrentDate && 
+                <View style={[GeneralStyles.cardView, {marginTop: 20}]}>
+                    <Button
+                        color="#f00"
+                        title="Remove"
+                        onPress={onClickRemove}
+                    />
+                </View>
+            }
         </View>
     );
 };
