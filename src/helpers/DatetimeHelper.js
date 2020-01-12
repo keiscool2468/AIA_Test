@@ -6,7 +6,11 @@ export const getPassedWeek = () => {
     let week = [];
     let date = getHKnewDate();
     for (let index = 0; index < LENGTH_OF_WEEK; index++) {
-        date.setDate(date.getDate() - 1);
+        if(index) {
+            date.setDate(date.getDate() - 1);
+        } else {
+            date.setDate(date.getDate());
+        }
         const YYYY = moment(date).format("YYYY");
         const MM = moment(date).format("MM");
         const DD = moment(date).format("DD");
