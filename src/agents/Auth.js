@@ -4,10 +4,13 @@ const sampleUser = {
     username: 'jack',
     password: '123123123'
 }
-
+/**
+ * General function to role play calling a api for login
+ * @param loginForm {username: string, passward: string}
+ * @param callback callback function
+ */
 export const Login = async (loginForm, callback) => {
     const {username, password} = loginForm;
-    console.log(username, password)
     if(username !== sampleUser.username) {
         callback(false, "Unknown Username or password")
         return;
