@@ -6,10 +6,12 @@ import {
   Button,
   Alert,
 } from 'react-native';
+import lodash from 'lodash';
 import {getHKnewDate, getYYYYMMDD} from '../../helpers/DatetimeHelper'
 import {WaterContext} from '../../contexts/WaterContext'
 import {GeneralStyles} from '../../styles/GeneralStyles';
 import {EditWaterStyles} from './EditWaterStyles';
+import BarChart from '../../components/BarChart/BarChart';
 
 const TARGET_VOLUMN = 2000;
 const EditWaterScreen = (props) => {
@@ -66,6 +68,14 @@ const EditWaterScreen = (props) => {
         setVolumnOfWeek(volumnOfWeek);
     }
 
+    handleLabelForDisplay = () => {
+        let newData = [];
+        newData = lodash.map(volumnOfWeek, (data, date) => {
+            return {label: date.split('-')[2], value: data}
+        })
+        return newData
+    }
+
     useEffect(() => {
         setVolumnOfDay(getVolumnOfDay())
     }, [volumnOfWeek])
@@ -75,7 +85,10 @@ const EditWaterScreen = (props) => {
             <Text style={[GeneralStyles.title]}>
                 How Much You Drink Today?
             </Text>
-            <Text style={[GeneralStyles.title]}>
+
+            <BarChart target={TARGET_VOLUMN} data={[{label: targetDate, value: volumnOfDay}]}/>
+
+            <Text style={[GeneralStyles.title, {marginTop: 20}]}>
                 {volumnOfDay} ml
             </Text>
 
