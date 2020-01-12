@@ -6,10 +6,18 @@ import {
 import lodash from 'lodash';
 import {GeneralStyles} from '../../styles/GeneralStyles';
 import {BarChartStyles} from './BarChartStyles';
-
+/**
+ * General component for display Bar char
+ * @param props 
+ *  - target: number
+ *  - data [{label:string, value: number}]
+ */
 const BarChart = (props) => {
     renderBar = (item, index) => {
+        //random color for each bar
         let color = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
+        //calculate the height proportion
         let height = item.value ? (item.value/props.target) * 150 : 0;
         
         return (
